@@ -15,18 +15,18 @@ Finally, install Gym following the instructions [here](https://gym.openai.com/do
 
 ### Train agents
 
-To train an agent, first create an environment using Gym. Then start the training using the train_[agent] method. 
+To train an agent, first create a Gym environment. Then start the training using the **train** function. 
 
 ```python
 import gym
-from dqn import train_dqn
+from dqn import train
 
 env = gym.make('CartPole-v1')
-train_dqn(env, max_episodes=500, stop_value=150, render=True)
+train(env, max_episodes=500, stop_value=150, render=True)
 ```
-The train_[agent] function needs only a Gym environment as argument, but you can specify additional hyperparameters. For a full list of hyperparameters, type help on the function. For example, to see the help on DQN agent, type
+The train function needs only a Gym environment as argument, but you can specify additional hyperparameters. For a full list of hyperparameters, type help on the function after importing the RL module. For example, to see the help on DQN agent, type
 ```python
-help(train_dqn)
+help(dqn.train)
 ```
 
 
