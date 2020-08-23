@@ -7,9 +7,9 @@ No-Frills RL is primarily intended to be used for personal or educational purpos
 ## Getting Started
 
 ### Install dependencies
-To use no-frills-rl you must have Python, PyTorch and Gym installed. One easy way to install Python is to install the Anaconda distribution, which also comes with useful IDEs like JupyterLab and Spyder. You can follow the instructions [here](https://docs.anaconda.com/anaconda/install/) to install Anaconda.
+To use no-frills-rl you must have Python, PyTorch and Gym installed. One easy way to install Python is to install the [Anaconda distribution](https://docs.anaconda.com/anaconda/install/), which also comes with useful IDEs like JupyterLab and Spyder.
 
-After installing Python, follow the instructions [here](https://pytorch.org/get-started/locally/) to install PyTorch. If you face issues with the latest version while running the code, feel free to roll back to version 1.5.0 (link to previous versions also in this page) and create an issue for me to investigate.
+After installing Python, follow the instructions [here](https://pytorch.org/get-started/locally/) to install PyTorch. If you face issues with the latest version while running the code, feel free to roll back to version 1.5.0 (link to previous versions also in the link) and create an issue for me to investigate.
 
 Finally, install Gym following the instructions [here](https://gym.openai.com/docs/#installation).
 
