@@ -22,9 +22,13 @@ import gym
 from dqn import train
 
 env = gym.make('CartPole-v1')
-train(env, max_episodes=500, stop_value=150, render=True)
+train(env)
 ```
-The train function needs only a Gym environment as argument, but you can specify additional hyperparameters. For a full list of hyperparameters, type help on the function after importing the RL module. For example, to see the help on DQN agent, type
+The train function needs only a Gym environment as argument, but you can specify additional hyperparameters like below. 
+```python
+train(env, max_episodes=500, stop_value=150, render=True
+```
+For a full list of hyperparameters, type help on the function after importing from the RL module. For example, to see the help on DQN agent, type
 ```python
 help(dqn.train)
 ```
