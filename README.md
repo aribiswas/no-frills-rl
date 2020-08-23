@@ -1,6 +1,6 @@
 # No-Frills RL: Simple implementations of popular RL algorithms
 
-No-Frills RL is a repository for reinforcement learning algorithms with simple and easy-to-understand implementation in PyTorch. The current implmentation uses Python 3.6 and has been tested with PyTorch 1.5.0.
+No-Frills RL is a repository for reinforcement learning algorithms with simple and easy-to-understand implementation in PyTorch. The current implmentation uses Python 3.6 and has been tested with PyTorch 1.5.0. There is no support for scalability yet.
 
 No-Frills RL is primarily intended to be used for personal or educational purposes.
 
