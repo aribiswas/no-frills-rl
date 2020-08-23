@@ -7,9 +7,11 @@ No-Frills RL is primarily intended to be used for personal or educational purpos
 ## Getting Started
 
 ### Install dependencies
-To use no-frills-rl you must install Python and PyTorch. One easy way to install Python is to install the Anaconda distribution, which also comes with useful IDEs like JupyterLab and Spyder. You can follow the instructions [here](https://docs.anaconda.com/anaconda/install/) to install Anaconda.
+To use no-frills-rl you must have Python, PyTorch and Gym installed. One easy way to install Python is to install the Anaconda distribution, which also comes with useful IDEs like JupyterLab and Spyder. You can follow the instructions [here](https://docs.anaconda.com/anaconda/install/) to install Anaconda.
 
 After installing Python, follow the instructions [here](https://pytorch.org/get-started/locally/) to install PyTorch. If you face issues with the latest version while running the code, feel free to roll back to version 1.5.0 (link to previous versions also in this page) and create an issue for me to investigate.
+
+Finally, install Gym following the instructions [here](https://gym.openai.com/docs/#installation).
 
 ### Train agents
 
@@ -22,9 +24,9 @@ from dqn import train_dqn
 env = gym.make('CartPole-v1')
 train_dqn(env, max_episodes=500, stop_value=150, render=True)
 ```
-The train_[agent] function needs only a Gym environment as argument, but you can specify additional hyperparameters. For a full list of hyperparameters, type help on the function.
+The train_[agent] function needs only a Gym environment as argument, but you can specify additional hyperparameters. For a full list of hyperparameters, type help on the function. For example, to see the help on DQN agent, type
 ```python
-help(train_[agent])
+help(train_dqn)
 ```
 
 
