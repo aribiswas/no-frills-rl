@@ -220,4 +220,11 @@ def soft_update(target_model, model, tau):
     with torch.no_grad():
         for target_params, params in zip(target_model.parameters(), model.parameters()):
             target_params.data.copy_(tau*params + (1-tau)*target_params.data)
+            
+
+def epsilon_sim(steps,epsilon,decay,epsilon_min):
+    for i in range(steps):
+        epsilon = max(epsilon_min, epsilon * (1-decay))
+    print('Final epsilon after {:d} steps = {:f}'.format(steps,epsilon))
+        
     

@@ -130,10 +130,6 @@ class DQNAgent:
         
         # obtain network output Q(s,a1) ... Q(s,an)
         with torch.no_grad():
-            
-            # reshape to NxCxHxW if image observation
-            #if
-            
             y = self.Qnet(state)
             
         # select action

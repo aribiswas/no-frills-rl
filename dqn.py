@@ -7,57 +7,96 @@ import collections
 import torch
 import gym
 
-def train_dqn(env,
-              obs_dim=(),
-              actions=[],
-              seed=0,
-              buffer_size=int(1e6),
-              gamma=0.99,
-              epsilon=0.9,
-              epsilon_decay=1e-6,
-              epsilon_min=0.1,
-              batch_size=64,
-              lr=0.01,
-              update_freq=5,
-              tau=0.01,
-              max_episodes=1000,
-              max_steps_per_episode=1000,
-              stop_value=100,
-              avg_window=100,
-              render=False,
-              verbose=True,
-              save_agent=True,
-              save_file='checkpoint_dqn.pth'):
+def train(env,
+          obs_dim=(),
+          actions=[],
+          seed=0,
+          buffer_size=int(1e6),
+          gamma=0.99,
+          epsilon=0.9,
+          epsilon_decay=1e-6,
+          epsilon_min=0.1,
+          batch_size=64,
+          lr=0.01,
+          update_freq=5,
+          tau=0.01,
+          max_episodes=1000,
+          max_steps_per_episode=1000,
+          stop_value=100,
+          avg_window=100,
+          render=False,
+          verbose=True,
+          save_agent=True,
+          save_file='checkpoint_dqn.pth'):
     
     """
     Train a DQN agent for an environment.
 
     Parameters
     ----------
-    osize : number
+    env : OpenAI Gym environment.
+        Environment.
+        
+    obs_dim : list
         Dimension of observations.
-    asize : number
-        Dimension of actions.
+        
+    actions : list
+        List of possible actions.
+        
     seed : number
         Random seed.
-    buffersize : number, optional
-        Max. capcity of experience buffer. The default is int(1e6).
+        
+    buffer_size : number, optional
+        Capcity of experience buffer. The default is int(1e6).
+        
     gamma : number optional
         Discount factor. The default is 0.99.
+        
     epsilon : number, optional
         Exploration parameter. The default is 0.05.
-    epsilondecay : number, optional
+        
+    epsilon_decay : number, optional
         Decay rate for epsilon. The default is 1e6.
-    epsilonmin : number, optional
+        
+    epsilon_min : number, optional
         Minimum value of epsilon. The default is 0.1.
+        
     batch_size : number, optional
         Batch size for training. The default is 128.
+        
     lr : number, optional
         Learn rate for Q-Network. The default is 0.01.
+        
     update_freq : number, optional
         Update frequency for target Q-Network. The default is 0.01.
+        
     tau : number, optional
         Smoothing factor for target Q-Network update. The default is 0.01.
+        
+    max_episodes : number, optional
+        Maximum number of training episodes. The default is 1000.
+        
+    max_steps_per_episode : number, optional
+        Maximum environment steps in a training episode. The default is 1000.
+        
+    stop_value : number, optional
+        Average score over avg_window episodes. Training is terminated on
+        reaching this value. The default is 100.
+        
+    avg_window : number, optional
+        Window length for score averaging. The default is 100.
+        
+    render : boolean, optional
+        Flag to set environment visualization. The default is False.
+        
+    verbose : boolean, optional
+        Flag for verbose training mode. The default is True.
+        
+    save_agent : boolean, optional
+        Flag to save agent after training. The default is True.
+        
+    save_file : char, optional
+        File name for saving agent. The default is 'checkpoint_dqn.pth'.
 
     """
     
@@ -131,7 +170,7 @@ def train_dqn(env,
         if verbose:
             loss = agent.logger.last('critic_loss')
             eps = agent.logger.last('epsilon')
-            print('Episode: {:4d} \tAverage Reward: {:6.2f} \tLoss: {:8.4f} \tEpsilon: {:6.4f}'.format(episode+1, avg_reward, loss, eps))
+            print('Episode: {:4d} \tAgent Steps: {:8d} \tAverage Reward: {:6.2f} \tLoss: {:8.4f} \tEpsilon: {:6.4f}'.format(episode+1, agent.step_count, avg_reward, loss, eps))
             
         # check termination
         if avg_reward >= stop_value:
@@ -149,19 +188,21 @@ def train_dqn(env,
     plt.ion()
     
     # plot score history
-    fig1, ax1 = plt.subplots(1,1, figsize=(4,4), dpi=200)
+    fig1, ax1 = plt.subplots(1,1, figsize=(6,4), dpi=200)
     ax1.set_title("Training Results")
     ax1.set_xlabel("Episodes")
     ax1.set_ylabel("Score")
     ax1.plot(agent.logger.get('average_reward'))
     
     # plot loss
-    fig2, ax2 = plt.subplots(1,1, figsize=(4,4), dpi=200)
+    fig2, ax2 = plt.subplots(1,1, figsize=(6,4), dpi=200)
     ax2.set_xlabel("Steps")
     ax2.set_ylabel("Loss")
     ax2.plot(agent.logger.get('critic_loss'))
     
     plt.show()
+    
+    return agent
 
 
 
