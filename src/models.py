@@ -24,8 +24,6 @@ class QNetwork(nn.Module):
             Dimension of observations.
         num_act : number
             Number of possible actions.
-        image_obs : boolean, optional
-            If observations are images. The default is False.
         seed : number, optional
             Random seed. The default is 0.
 
@@ -62,8 +60,6 @@ class QNetwork(nn.Module):
         self.fc1 = nn.Linear(self.layer_size[0], self.layer_size[1])
         self.fc2 = nn.Linear(self.layer_size[1], self.layer_size[2])
         self.fc3 = nn.Linear(self.layer_size[2], self.layer_size[3])
-
-
 
     def forward(self, state):
         """
@@ -114,7 +110,6 @@ class QNetwork(nn.Module):
         x = self.fc3(x)
 
         return x
-
 
 class DeterministicActor(nn.Module):
 

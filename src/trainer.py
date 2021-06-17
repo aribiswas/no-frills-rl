@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from matplotlib import pyplot as plt
-from dqn import DQNAgent, dqn_params
-import collections, torch, gym, utils
+from dqn import DQNAgent
+import collections
+import torch
+import gym
+import utils
 import numpy as np
+
 
 def train_params(max_episodes=1000,
                  max_steps_per_episode=1000,
@@ -51,6 +55,7 @@ def train_params(max_episodes=1000,
     }
     return params
 
+
 def train(env, agent, training_params=None):
     """
     Parameters
@@ -74,12 +79,7 @@ def train(env, agent, training_params=None):
     assert(isinstance(env.action_space,gym.spaces.discrete.Discrete)), \
         "Specify an environment with discrete action space."
 
-    # create DQN agent
-    obs_dim = env.observation_space.shape
-    actions = range(env.action_space.n)
-    agent = DQNAgent(obs_dim, actions, seed, params)
-
-    # create a logger
+    # create a logger and attach to the agent
     logger = utils.logger()
     agent.attach_logger(logger)
 
@@ -164,8 +164,9 @@ def train(env, agent, training_params=None):
     plt.show()
 
     info = {
-        'plot': (fig1, fig2, ax1, ax2),
+        'plot': (ax1, ax2),
         'logger': logger,
+        'agent_params': agent.params,
         'training_params': training_params
     }
     return info
