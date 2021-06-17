@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import gym
-from dqn import DQNAgent, dqn_params
-from trainer import train, train_params
+from src.dqn import DQNAgent, dqn_params
+from src.trainer import train, train_params
 
 agent_params = dqn_params(buffer_size=int(1e6),
                           gamma=0.99,

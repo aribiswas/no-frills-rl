@@ -19,18 +19,23 @@ To train an agent, first create a Gym environment. Then start the training using
 
 ```python
 import gym
-from dqn import train
+from dqn import DQNAgent
+from trainer import train
 
 env = gym.make('CartPole-v1')
-train(env)
+agent = DQNAgent(obs_dim=[4,1], actions=[0,1])
+train(env,agent)
 ```
-The train function needs only a Gym environment as argument, but you can specify additional hyperparameters like below. 
+The train function needs a Gym environment and a reinforcement learning agent as arguments. You can also specify hyperparameters through optional arguments. 
 ```python
-train(env, max_episodes=500, stop_value=150, render=True
-```
-For a full list of hyperparameters, type help on the function after importing from the RL module. For example, to see the help on DQN agent, type
-```python
-help(dqn.train)
+from dqn import dqn_params
+from trainer import train_params
+
+agent_params = dqn_params(batch_size=256, lr=0.001)
+training_params = train_params(max_episodes=100,stop_value=200)
+
+agent = DQNAgent(obs_dim=[4,1], actions=[0,1], agent_params)
+train(env, agent, training_params)
 ```
 
 
